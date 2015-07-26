@@ -1,0 +1,85 @@
+package PrimeNumbers;
+
+public class Primer {
+
+	public int n;
+
+	public Primer() {
+		n = 2;
+	}
+
+	public Primer(int N) {
+		n = N;
+	}
+
+	public void set(int N) {
+		n = N;
+		return;
+	}
+
+	public int get() {
+		return n;
+	}
+
+	public int next() {
+
+		int div = 2;
+		while (true) {
+			if (div == n) {
+				this.set(n + 1);
+				break;
+			}
+			else if (n % div == 0) {
+				this.set(n + 1);
+				div = 2;
+			}
+			else {
+				div++;
+			}
+		}
+		return n - 1;
+	}
+
+	public int next(int N) {
+		this.set(N);
+		int div = 2;
+		while (true) {
+			if (div == n) {
+				this.set(n + 1);
+				break;
+			}
+			else if (n % div == 0) {
+				this.set(n + 1);
+				div = 2;
+			}
+			else {
+				div++;
+			}
+		}
+		return n - 1;
+	}
+	
+	public int nearestPower(){
+		int twos = 1;
+		int pow = 1;
+		int thisPow = 1;
+		int diff = (int) Math.abs(pow - n);
+		
+		while(thisPow < n){
+			
+			thisPow = (int) Math.pow(2, twos);
+			int thisDiff = (int) Math.abs(thisPow - n);
+			
+			if(thisDiff < diff){
+				pow = thisPow;
+				diff = thisDiff;
+			}
+			
+			twos++;
+			
+		}
+		
+		return pow;
+	}
+
+}
